@@ -10,9 +10,10 @@ import {
 
 @Component({
   selector: 'app-root',
-  template: `<app-title title="Olá Mundo"></app-title>
+  template: `<app-title title="Olá Mundo" *ngIf="destruir"></app-title>
     {{ valor }}
     <button (click)="adicionar()">Adicionar</button>
+    <button (click)="destruirComponente()">Destruir componente</button>
     <router-outlet></router-outlet>`,
 })
 export class AppComponent
@@ -26,8 +27,14 @@ export class AppComponent
 {
   public valor: number = 1;
 
+  public destruir: boolean = true;
+
   public adicionar(): number {
     return (this.valor += 1);
+  }
+
+  public destruirComponente() {
+    this.destruir = false;
   }
 
   ngOnInit(): void {
