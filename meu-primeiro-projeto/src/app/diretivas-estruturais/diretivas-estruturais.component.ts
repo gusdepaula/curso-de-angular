@@ -8,6 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class DiretivasEstruturaisComponent implements OnInit {
   public condition: boolean = true;
   public conditionClick: boolean = true;
+  public list: Array<{ nome: string; idade: number }> = [
+    { nome: 'Gustavo', idade: 40 },
+    { nome: 'José', idade: 59 },
+    { nome: 'Maria', idade: 55 },
+  ];
 
   ngOnInit(): void {
     setInterval(() => {
@@ -25,5 +30,13 @@ export class DiretivasEstruturaisComponent implements OnInit {
     } else {
       this.conditionClick = true;
     }
+  }
+
+  public onClickAddList() {
+    this.list.push({ nome: 'Teste', idade: 100 });
+  }
+
+  public onClickEventList(event: number) {
+    this.list.splice(event, 1);
   }
 }
