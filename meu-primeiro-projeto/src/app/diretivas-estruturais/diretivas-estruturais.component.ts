@@ -13,6 +13,7 @@ export class DiretivasEstruturaisComponent implements OnInit {
     { nome: 'José', idade: 59 },
     { nome: 'Maria', idade: 55 },
   ];
+  public nome: string = 'gustavo';
 
   ngOnInit(): void {
     setInterval(() => {
