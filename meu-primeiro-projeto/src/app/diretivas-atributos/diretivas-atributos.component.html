@@ -1,4 +1,4 @@
-<div *ngIf="nome != 'Gustavo'">
+<!-- <div *ngIf="nome != 'Gustavo'">
   <p [ngClass]="{ active: valor, disable: !valor }">
     diretivas-atributos works!
   </p>
@@ -12,3 +12,11 @@
 <ul>
   <li *ngFor="let item of list">{{ item.nome }}</li>
 </ul>
+
+<hr /> -->
+
+<ng-template ngFor let-item [ngForOf]="list">
+  <p>{{ item.nome }}</p>
+</ng-template>
+<input [(ngModel)]="nome" /> {{ nome }}
+<button (click)="salvar()">Salvar</button>
