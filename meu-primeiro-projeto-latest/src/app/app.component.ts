@@ -8,7 +8,9 @@ import { NewComponent } from './components/new-component/new-component.component
   standalone: true,
   imports: [CommonModule, RouterOutlet, NewComponent],
   template: `<h1>Curso de Angular</h1>
-    <app-new-component />`,
+    <div class="theme-red">
+      <app-new-component />
+    </div>`,
   styleUrl: './app.component.scss',
 })
 export class AppComponent {}

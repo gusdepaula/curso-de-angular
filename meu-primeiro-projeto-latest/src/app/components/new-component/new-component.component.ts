@@ -7,12 +7,5 @@ import { Component } from '@angular/core';
   imports: [CommonModule],
   templateUrl: './new-component.component.html',
   styleUrl: './new-component.component.scss',
-  styles: [
-    `
-      h2 {
-        color: purple;
-      }
-    `,
-  ],
 })
 export class NewComponent {}
