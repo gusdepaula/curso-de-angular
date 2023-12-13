@@ -10,4 +10,13 @@ import { Component } from '@angular/core';
 export class TemplateBindingComponent {
   public name = 'Gustavo de Paula';
   public age = 40;
+  public isDisabled = true;
+  public srcValue =
+    'https://angular.io/assets/images/logos/angular/logo-nav@2x.png';
+
+  constructor() {
+    setTimeout(() => {
+      this.name = 'João e Maria';
+    }, 1000);
+  }
 }
