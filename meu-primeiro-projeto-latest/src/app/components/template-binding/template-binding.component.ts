@@ -16,6 +16,25 @@ export class TemplateBindingComponent {
 
   public isTextDecoration = this.age >= 32 ? 'underline' : 'none';
 
+  public sum() {
+    return this.age++;
+  }
+
+  public sub() {
+    return this.age--;
+  }
+
+  public onKeyDown(event: Event) {
+    return console.log(event);
+  }
+
+  public onMouseMove(event: MouseEvent) {
+    return console.log({
+      clientX: event.clientX,
+      clientY: event.clientY,
+    });
+  }
+
   constructor() {
     setTimeout(() => {
       this.name = 'João e Maria';
