@@ -7,8 +7,16 @@
 <hr />
 <h2>Property binding</h2>
 <button [disabled]="isDisabled">button</button>
-<!-- <img [src]="srcValue" alt="" /> -->
 
 <hr />
 <h2>Attribute binding</h2>
 <p [attr.title]="name" [attr.aria-label]="name">Gustavo de Paula</p>
+
+<h3>Class and Style binding</h3>
+<p [class.background-red]="age > 32" [class.background-blue]="age < 32">
+  {{ name }}
+</p>
+
+<p [style.text-decoration]="isTextDecoration">{{ age }}</p>
+
+<hr />

@@ -14,6 +14,8 @@ export class TemplateBindingComponent {
   public srcValue =
     'https://angular.io/assets/images/logos/angular/logo-nav@2x.png';
 
+  public isTextDecoration = this.age >= 32 ? 'underline' : 'none';
+
   constructor() {
     setTimeout(() => {
       this.name = 'João e Maria';
