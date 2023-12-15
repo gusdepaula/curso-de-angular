@@ -8,4 +8,6 @@ import { Component } from '@angular/core';
   templateUrl: './new-component.component.html',
   styleUrl: './new-component.component.scss',
 })
-export class NewComponent {}
+export class NewComponent {
+  public name = 'New Component';
+}
