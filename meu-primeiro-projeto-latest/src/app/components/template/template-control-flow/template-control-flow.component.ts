@@ -12,9 +12,22 @@ import { Observable, delay, of } from 'rxjs';
 export class TemplateControlFlowComponent {
   public isTrue = true;
 
+  public itens: Array<{ name: string }> = [
+    { name: 'Gustavo de Paula' },
+    { name: 'Maria' },
+  ];
+
   public loadingData$: Observable<string[]> = of([
     'item 1',
     'item 2',
     'item 3',
   ]).pipe(delay(3000));
+
+  public trackByFnV17(index: number, item?: { name: string }) {
+    return index;
+  }
+
+  public trackByFn(index: number) {
+    return index;
+  }
 }
