@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { TemplateVariablesComponent } from './components/template/template-variables/template-variables.component';
+import { TemplateControlFlowComponent } from './components/template/template-control-flow/template-control-flow.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, TemplateVariablesComponent],
+  imports: [CommonModule, RouterOutlet, TemplateControlFlowComponent],
   template: `<h1>Curso de Angular</h1>
-    <app-template-variables />`,
+    <app-template-control-flow />`,
 })
 export class AppComponent {}

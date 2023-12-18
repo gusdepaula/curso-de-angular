@@ -1,0 +1,15 @@
+<h2>Control flow</h2>
+<h3>IF ( Novo )</h3>
+
+<!-- Nova Forma -->
+@if(loadingData$ | async; as data) {
+<ul>
+  @for(item of data; track item){
+  <li>{{ item }}</li>
+  }
+</ul>
+} @else {
+<p>Carregando...</p>
+}
+
+<hr />
