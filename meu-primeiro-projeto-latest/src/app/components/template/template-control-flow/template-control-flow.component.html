@@ -51,6 +51,17 @@
   </ng-template>
 </ul>
 
+<hr />
+
+<h3>SWITCH CASE ( Novo )</h3>
+@switch (switchCondition) { @case ('A') {
+<p>Sim sua letra é: A</p>
+} @case ('B') {
+<p>Sim sua letra é: B</p>
+} @default { Default Case. } }
+
+<hr />
+
 <h3>FOR ( Antigo )</h3>
 <ng-container
   *ngFor="
@@ -88,6 +99,15 @@
     </ng-container>
   </ng-template>
 </ul>
+
+<hr />
+
+<h3>SWITCH CASE ( Antigo )</h3>
+<div [ngSwitch]="'A'">
+  <p *ngSwitchCase="'A'">Conteúdo A</p>
+  <p *ngSwitchCase="'B'">Conteúdo B</p>
+  <p *ngSwitchDefault>Conteúdo Default</p>
+</div>
 
 <hr />
 
