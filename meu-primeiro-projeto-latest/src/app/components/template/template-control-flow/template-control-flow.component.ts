@@ -30,4 +30,8 @@ export class TemplateControlFlowComponent {
   public trackByFn(index: number) {
     return index;
   }
+
+  public addNewName(value: string) {
+    return this.itens.push({ name: value });
+  }
 }

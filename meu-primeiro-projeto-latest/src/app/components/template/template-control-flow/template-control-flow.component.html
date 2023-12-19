@@ -51,4 +51,46 @@
   </ng-template>
 </ul>
 
+<h3>FOR ( Antigo )</h3>
+<ng-container
+  *ngFor="
+    let item of itens;
+    let i = index;
+    let c = count;
+    let f = first;
+    let l = last;
+    let e = even;
+    let o = odd;
+    trackBy: trackByFn
+  "
+>
+  <p>{{ item.name }}</p>
+  <p>index - {{ i }}</p>
+  <p>count - {{ c }}</p>
+  <p>first - {{ f }}</p>
+  <p>last - {{ l }}</p>
+  <p>even - {{ e }}</p>
+  <p>odd - {{ o }}</p>
+</ng-container>
+
 <hr />
+
+<ul>
+  <ng-container *ngIf="itens.length === 0; else itensExist">
+    <li>Não contém valores</li>
+  </ng-container>
+
+  <ng-template #itensExist>
+    <ng-container *ngFor="let item of itens">
+      <li>
+        {{ item.name }}
+      </li>
+    </ng-container>
+  </ng-template>
+</ul>
+
+<hr />
+
+<h3>Add New Name</h3>
+<input #name type="text" />
+<button (click)="addNewName(name.value)">Add Name</button>
