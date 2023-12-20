@@ -1,5 +1,18 @@
-<h2>Deferrable Views</h2>
-@defer() {
+<!--
+
+  on - especifica uma condição de acionador usando um acionador da lista.
+  (idle, timer, viewport, interaction, hover, immediate, prefetch)
+
+  when - especifica uma condição imperativa como uma expressão que retorna
+  um booleano. Quando esta expressão se torna verdadeira, o espaço reservado
+  é trocado pelo conteúdo carregado lentamente (o que pode ser uma operação
+  assíncrona se as dependências precisarem ser buscadas).
+
+  Nota: Vários on triggers são sempre condições OR. Da mesma forma, on misturado
+  com when também são condições OR.
+-->
+<h2 #trigger>Deferrable Views</h2>
+@defer(on timer(5s); on interaction(trigger); on hover;) {
 <app-new-component />
 } @placeholder {
 <p>Mostrar antes carregar algo</p>
