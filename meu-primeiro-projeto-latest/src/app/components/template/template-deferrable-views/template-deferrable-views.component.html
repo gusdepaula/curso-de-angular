@@ -15,7 +15,7 @@
 <button (click)="isTrue = true">Add true</button>
 @defer(when loadingData$ | async) {
 <app-new-component />
-} @placeholder {
+} @placeholder(minimum 5s) {
 <p>Mostrar antes carregar algo</p>
 } @loading {
 <p>Loading...</p>
