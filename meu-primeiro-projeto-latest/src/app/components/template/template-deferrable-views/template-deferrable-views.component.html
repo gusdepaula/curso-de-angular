@@ -12,7 +12,8 @@
   com when também são condições OR.
 -->
 <h2 #trigger>Deferrable Views</h2>
-@defer(on timer(5s); on interaction(trigger); on hover;) {
+<button (click)="isTrue = true">Add true</button>
+@defer(when loadingData$ | async) {
 <app-new-component />
 } @placeholder {
 <p>Mostrar antes carregar algo</p>
