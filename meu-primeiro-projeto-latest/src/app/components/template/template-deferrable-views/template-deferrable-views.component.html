@@ -17,7 +17,7 @@
 <app-new-component />
 } @placeholder(minimum 5s) {
 <p>Mostrar antes carregar algo</p>
-} @loading {
+} @loading(after 2000ms; minimum 5s) {
 <p>Loading...</p>
 } @error {
 <p>Loading failed...</p>
