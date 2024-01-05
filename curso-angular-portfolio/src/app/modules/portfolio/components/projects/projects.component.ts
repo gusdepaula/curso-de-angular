@@ -1,9 +1,15 @@
 import { Component, inject, signal } from '@angular/core';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 // Interface
 import { IProjects } from '../../interface/IProjects.interface';
+
+// Material
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+
+// Enum
 import { EDialogPanelClass } from '../../enum/EDialogPanelClass.enum';
+
+// Dialog
 import { DialogProjectsComponent } from '../dialog/dialog-projects/dialog-projects.component';
 
 @Component({
@@ -15,6 +21,7 @@ import { DialogProjectsComponent } from '../dialog/dialog-projects/dialog-projec
 })
 export class ProjectsComponent {
   #dialog = inject(MatDialog);
+
   public arrayProjects = signal<IProjects[]>([
     {
       src: 'assets/img/projects/vfull_.jpeg',

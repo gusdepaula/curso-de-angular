@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
+
+// Components
+import { ExperiencesComponent } from '../../components/experiences/experiences.component';
 import { HeaderComponent } from '../../components/header/header.component';
 import { KnowledgeComponent } from '../../components/knowledge/knowledge.component';
-import { ExperiencesComponent } from '../../components/experiences/experiences.component';
 import { ProjectsComponent } from '../../components/projects/projects.component';
 
 @Component({
