@@ -1,12 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-output',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './output.component.html',
-  styleUrl: './output.component.scss'
+  styleUrl: './output.component.scss',
 })
 export class OutputComponent {
+  @Output() public outputName = new EventEmitter();
 
+  public sendOutputName() {
+    return this.outputName.emit('Gustavo de Paula');
+  }
 }
