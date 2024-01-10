@@ -10,6 +10,7 @@ import {
 } from '@angular/common';
 import { Component, LOCALE_ID, signal } from '@angular/core';
 import { Observable, delay, of } from 'rxjs';
+import { CustomStringPipe } from '../../../pipes/custom-string.pipe';
 
 @Component({
   selector: 'app-angular-pipes',
@@ -23,6 +24,7 @@ import { Observable, delay, of } from 'rxjs';
     CurrencyPipe,
     DecimalPipe,
     PercentPipe,
+    CustomStringPipe,
   ],
   templateUrl: './angular-pipes.component.html',
   styleUrl: './angular-pipes.component.scss',
