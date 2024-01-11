@@ -1,1 +1,28 @@
-<h2>Template driven forms</h2>
+<!--
+  Ele é util para adicionar um formulário simples a um
+  aplicativo, como um formulário de inscrição em uma lista de e-mail.
+
+  É mais fácil de adicionar a um aplicativo, mas não são escalonáveis
+  tão bem quanto os formulários reativos.
+-->
+
+<h2>Template-driven forms</h2>
+<form>
+  <label>
+    Nome:
+    <input
+      type="text"
+      name="inputName"
+      #name="ngModel"
+      [ngModel]="name.value"
+      required
+    />
+  </label>
+
+  <hr />
+  <p>value: {{ name.value }}</p>
+  <p>valid: {{ name.valid }}</p>
+  <p>dirty: {{ name.dirty }}</p>
+  <p>touched: {{ name.touched }}</p>
+  <hr />
+</form>
