@@ -7,7 +7,7 @@
 -->
 
 <h2>Template-driven forms</h2>
-<form>
+<form #form="ngForm" (ngSubmit)="submitForm(form)">
   <label>
     Nome:
     <input
@@ -68,6 +68,7 @@
   <p>dirty: {{ sexo.dirty }}</p>
   <p>touched: {{ sexo.touched }}</p>
   <hr />
+
   <label>
     Angular:
     <input
@@ -140,4 +141,9 @@
   <p>dirty: {{ comidas.dirty }}</p>
   <p>touched: {{ comidas.touched }}</p>
   <hr />
+
+  <button [disabled]="!form.valid">Send</button>
 </form>
+
+<p>Form Valid: {{ form.valid }}</p>
+<p>Form Value: {{ form.value | json }}</p>
