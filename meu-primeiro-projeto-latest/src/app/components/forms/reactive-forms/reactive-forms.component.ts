@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-reactive-forms',
@@ -10,9 +10,21 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './reactive-forms.component.scss',
 })
 export class ReactiveFormsComponent {
-  name = new FormControl('');
+  public profileForm = new FormGroup({
+    name: new FormControl(''),
+    myStacks: new FormGroup({
+      front: new FormControl('Angular'),
+      back: new FormControl('C#'),
+    }),
+  });
 
-  public updateName() {
-    this.name.setValue('Maria');
+  public update() {
+    this.profileForm.patchValue({
+      name: 'Maria',
+      myStacks: {
+        front: 'Vue',
+        back: 'NestJs',
+      },
+    });
   }
 }
