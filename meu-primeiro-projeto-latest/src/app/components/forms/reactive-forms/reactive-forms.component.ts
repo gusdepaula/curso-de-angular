@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormArray,
+  FormBuilder,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
@@ -15,23 +16,16 @@ import {
   styleUrl: './reactive-forms.component.scss',
 })
 export class ReactiveFormsComponent {
-  public profileForm = new FormGroup({
-    name: new FormControl(''),
-    myStacks: new FormGroup({
-      front: new FormControl('Angular'),
-      back: new FormControl('C#'),
+  #fb = inject(FormBuilder);
+
+  public profileForm = this.#fb.group({
+    name: [''],
+    myStacks: this.#fb.group({
+      front: ['Angular'],
+      back: ['NodeJs'],
     }),
-    myFavoriteFoods: new FormArray([new FormControl('X-TUdo')]),
+    myFavoriteFoods: this.#fb.array([['X-tudo']]),
   });
-
-  public addMyFavoriteFoods(newFood: string) {
-    const myFavoriteFoods = this.profileForm.get(
-      'myFavoriteFoods'
-    ) as FormArray;
-    const addNewFood = new FormControl(newFood);
-
-    myFavoriteFoods.push(addNewFood);
-  }
 
   public update() {
     this.profileForm.patchValue({
@@ -41,5 +35,14 @@ export class ReactiveFormsComponent {
         back: 'NestJs',
       },
     });
+  }
+
+  public addMyFavoriteFoods(newFood: string) {
+    const myFavoriteFoods = this.profileForm.get(
+      'myFavoriteFoods'
+    ) as FormArray;
+    const addNewFood = new FormControl(newFood);
+
+    myFavoriteFoods.push(addNewFood);
   }
 }
