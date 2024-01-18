@@ -1,13 +1,28 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import {
+  AbstractControl,
   FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
+  ValidatorFn,
   Validators,
 } from '@angular/forms';
+
+function textValidator(): ValidatorFn {
+  return (control: AbstractControl) => {
+    const hasUpperCase = /[A-Z]/.test(control.value);
+    const hasNumber = /[0-9]/.test(control.value);
+
+    if (hasUpperCase && hasNumber) {
+      return null;
+    }
+
+    return { textValidator: true };
+  };
+}
 
 @Component({
   selector: 'app-reactive-forms',
@@ -20,7 +35,7 @@ export class ReactiveFormsComponent {
   #fb = inject(FormBuilder);
 
   public profileForm = this.#fb.group({
-    name: ['', [Validators.minLength(2), Validators.maxLength(5)]],
+    name: ['', [Validators.required, textValidator()]],
     myStacks: this.#fb.group({
       front: ['Angular'],
       back: ['NodeJs'],
