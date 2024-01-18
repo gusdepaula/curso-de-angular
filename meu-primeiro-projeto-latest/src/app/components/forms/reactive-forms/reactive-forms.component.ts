@@ -6,6 +6,7 @@ import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 
 @Component({
@@ -19,7 +20,7 @@ export class ReactiveFormsComponent {
   #fb = inject(FormBuilder);
 
   public profileForm = this.#fb.group({
-    name: [''],
+    name: ['', [Validators.minLength(2), Validators.maxLength(5)]],
     myStacks: this.#fb.group({
       front: ['Angular'],
       back: ['NodeJs'],
