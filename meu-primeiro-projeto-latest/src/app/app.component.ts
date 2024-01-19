@@ -1,20 +1,22 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { TemplateDrivenFormsComponent } from './components/forms/template-driven-forms/template-driven-forms.component';
-import { ReactiveFormsComponent } from './components/forms/reactive-forms/reactive-forms.component';
+import { ContentComponent } from './components/content/content.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    CommonModule,
-    RouterOutlet,
-    TemplateDrivenFormsComponent,
-    ReactiveFormsComponent,
-  ],
+  imports: [CommonModule, RouterOutlet, ContentComponent],
   template: `<h1>Curso de Angular</h1>
-    <app-template-driven-forms />
-    <app-reactive-forms /> `,
+    <app-content>
+      <header id="header">
+        <p>Header</p>
+      </header>
+      <p text>Text</p>
+      <p>Text</p>
+      <footer class="footer">
+        <p>Footer</p>
+      </footer>
+    </app-content>`,
 })
 export class AppComponent {}
