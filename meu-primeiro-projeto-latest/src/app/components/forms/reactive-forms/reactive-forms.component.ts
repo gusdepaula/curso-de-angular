@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
+import { CommonModule, JsonPipe } from '@angular/common';
 import {
   AbstractControl,
   FormArray,
@@ -27,7 +27,7 @@ function textValidator(): ValidatorFn {
 @Component({
   selector: 'app-reactive-forms',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [JsonPipe, ReactiveFormsModule],
   templateUrl: './reactive-forms.component.html',
   styleUrl: './reactive-forms.component.scss',
 })
@@ -60,5 +60,12 @@ export class ReactiveFormsComponent {
     const addNewFood = new FormControl(newFood);
 
     myFavoriteFoods.push(addNewFood);
+  }
+
+  public submit() {
+    console.log(this.profileForm.valid);
+    if (this.profileForm.valid) {
+      console.log(this.profileForm.value);
+    }
   }
 }
