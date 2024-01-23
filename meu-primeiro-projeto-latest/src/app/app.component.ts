@@ -1,13 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { HostElementsComponent } from './components/host-elements/host-elements.component';
+import { LifeCycleComponent } from './components/life-cycle/life-cycle.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, HostElementsComponent],
+  imports: [CommonModule, RouterOutlet, LifeCycleComponent],
   template: `<h1>Curso de Angular</h1>
-    <app-host-elements />`,
+    <app-life-cycle [myNumber]="number" />`,
 })
-export class AppComponent {}
+export class AppComponent implements OnInit {
+  public number = 1;
+
+  ngOnInit(): void {
+    setInterval(() => {
+      this.number++;
+    }, 1000);
+  }
+}
