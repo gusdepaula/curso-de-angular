@@ -1,5 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  DoCheck,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  signal,
+} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
 @Component({
@@ -9,16 +17,22 @@ import { FormBuilder } from '@angular/forms';
   templateUrl: './life-cycle.component.html',
   styleUrl: './life-cycle.component.scss',
 })
-export class LifeCycleComponent implements OnChanges {
+export class LifeCycleComponent implements OnChanges, OnInit, DoCheck {
   @Input() public myNumber = 0;
+  public myText = signal('Gusta');
 
   // Construtor ou inicializador
   constructor(private fb: FormBuilder) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log('ngOnChanges', changes);
-    if (changes['myNumber'].previousValue === 2) {
-      alert('Deu bom');
-    }
+  }
+
+  ngOnInit(): void {
+    console.log('ngOnInit');
+  }
+
+  ngDoCheck(): void {
+    console.log('ngDoCheck');
   }
 }
