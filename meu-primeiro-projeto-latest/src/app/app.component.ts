@@ -8,7 +8,9 @@ import { LifeCycleComponent } from './components/life-cycle/life-cycle.component
   standalone: true,
   imports: [CommonModule, RouterOutlet, LifeCycleComponent],
   template: `<h1>Curso de Angular</h1>
-    <app-life-cycle [myNumber]="number" />`,
+    <app-life-cycle [myNumber]="number">
+      <p #text>Text</p>
+    </app-life-cycle>`,
 })
 export class AppComponent {
   public number = 1;
