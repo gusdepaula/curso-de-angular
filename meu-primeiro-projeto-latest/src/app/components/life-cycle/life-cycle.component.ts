@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import {
+  AfterContentChecked,
   AfterContentInit,
+  AfterViewChecked,
   AfterViewInit,
   Component,
   ContentChild,
@@ -23,7 +25,14 @@ import { FormBuilder } from '@angular/forms';
   styleUrl: './life-cycle.component.scss',
 })
 export class LifeCycleComponent
-  implements OnChanges, OnInit, DoCheck, AfterViewInit, AfterContentInit
+  implements
+    OnChanges,
+    OnInit,
+    DoCheck,
+    AfterViewInit,
+    AfterContentInit,
+    AfterContentChecked,
+    AfterViewChecked
 {
   @Input() public myNumber = 0;
   public myText = signal('Gusta');
@@ -51,8 +60,16 @@ export class LifeCycleComponent
     console.log(this.text.nativeElement.innerText);
   }
 
+  ngAfterContentChecked(): void {
+    console.log('ngAfterContentChecked');
+  }
+
   ngAfterViewInit(): void {
     // console.log('ngAfterViewInit');
     // console.log(this.content.nativeElement.innerText);
+  }
+
+  ngAfterViewChecked(): void {
+    console.log('ngAfterViewChecked');
   }
 }
