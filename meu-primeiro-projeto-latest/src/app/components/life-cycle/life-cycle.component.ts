@@ -4,6 +4,7 @@ import {
   AfterContentInit,
   AfterViewChecked,
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   ContentChild,
   DoCheck,
@@ -26,6 +27,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   imports: [CommonModule],
   templateUrl: './life-cycle.component.html',
   styleUrl: './life-cycle.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LifeCycleComponent
   implements
@@ -38,19 +40,22 @@ export class LifeCycleComponent
     AfterViewChecked,
     OnDestroy
 {
-  @Input() public myNumber = 0;
+  public myNumber = signal(0);
+  @Input() public inputMyNumber(value: number) {
+    this.myNumber.set(value);
+  }
   public myText = signal('Gusta');
 
   @ViewChild('content') public content!: ElementRef;
   @ContentChild('text') public text!: ElementRef;
 
-  private destroy$ = timer(0, 1000)
-    .pipe(takeUntilDestroyed())
-    .subscribe({
-      next: (next) => console.log('next', next),
-      error: (error) => console.log('error', error),
-      complete: () => console.log('Complete!'),
-    });
+  // private _destroy$ = timer(0, 1000)
+  //   .pipe(takeUntilDestroyed())
+  //   .subscribe({
+  //     next: (next) => console.log('next', next),
+  //     error: (error) => console.log('error', error),
+  //     complete: () => console.log('Complete!'),
+  //   });
 
   // Construtor ou inicializador
   constructor(private fb: FormBuilder) {}
@@ -87,6 +92,6 @@ export class LifeCycleComponent
 
   ngOnDestroy(): void {
     console.log('ngOnDestroy');
-    // this.destroy$.unsubscribe();
+    // this._destroy$.unsubscribe();
   }
 }
