@@ -1,13 +1,17 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { LifeCycleComponent } from '@components/life-cycle/life-cycle.component';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, LifeCycleComponent],
+  imports: [CommonModule, RouterOutlet],
   template: `<h1>Curso de Angular</h1> `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {}
+export class AppComponent {
+  constructor() {
+    console.log(environment.env);
+  }
+}
