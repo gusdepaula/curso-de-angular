@@ -4,35 +4,34 @@ import {
   Component,
   OnInit,
   inject,
+  signal,
 } from '@angular/core';
-import { NewComponent } from '@components/new-component/new-component.component';
 import { ApiService } from 'app/services/api.service';
 
 @Component({
   selector: 'app-consume-service',
   standalone: true,
-  imports: [CommonModule, NewComponent],
+  imports: [CommonModule],
   templateUrl: './consume-service.component.html',
   styleUrl: './consume-service.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConsumeServiceComponent implements OnInit {
   #apiService = inject(ApiService);
-  // constructor(private _apiService: ApiService) {}
+
+  public getTask = signal<null | Array<{ id: string; title: string }>>(null);
 
   ngOnInit(): void {
-    console.log(this.#apiService.name());
-
-    console.log(
-      this.#apiService.name$.subscribe({
-        next: (next) => console.log('next'),
-        error: (error) => console.log('error'),
-        complete: () => console.log('complete'),
-      })
-    );
-
-    setTimeout(() => {
-      console.log(this.#apiService.name());
-    }, 2000);
+    this.#apiService.httpListTask$().subscribe({
+      next: (next) => {
+        console.log(next);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+      complete: () => {
+        console.log('complete');
+      },
+    });
   }
 }
