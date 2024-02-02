@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject, signal } from '@angular/core';
 import { environment } from 'environments/environment';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, shareReplay } from 'rxjs';
 
 interface ITask {
   id: string;
@@ -22,6 +22,6 @@ export class ApiService {
   #url = signal(environment.apiTask);
 
   public httpListTask$(): Observable<ITask[]> {
-    return this.#http.get<ITask[]>(this.#url());
+    return this.#http.get<ITask[]>(this.#url()).pipe(shareReplay());
   }
 }
