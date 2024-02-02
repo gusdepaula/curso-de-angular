@@ -6,6 +6,7 @@ import {
   inject,
   signal,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { ApiService } from 'app/services/api.service';
 
 @Component({
@@ -19,21 +20,9 @@ import { ApiService } from 'app/services/api.service';
 export class ConsumeServiceComponent implements OnInit {
   #apiService = inject(ApiService);
 
-  public getTask = signal<null | Array<{ id: string; title: string }>>(null);
-
-  public getTask$ = this.#apiService.httpListTask$();
+  public getListTask = this.#apiService.getTaskList;
 
   ngOnInit(): void {
-    this.getTask$.subscribe({
-      next: (next) => {
-        console.log(next);
-      },
-      error: (error) => {
-        console.log(error);
-      },
-      complete: () => {
-        console.log('complete');
-      },
-    });
+    this.#apiService.httpListTask$().subscribe();
   }
 }
