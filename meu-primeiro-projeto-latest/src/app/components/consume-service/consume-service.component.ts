@@ -8,6 +8,8 @@ import {
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ApiService } from 'app/services/api.service';
+import { error } from 'console';
+import { concatMap } from 'rxjs';
 
 @Component({
   selector: 'app-consume-service',
@@ -27,5 +29,16 @@ export class ConsumeServiceComponent implements OnInit {
   ngOnInit(): void {
     this.#apiService.httpListTask$().subscribe();
     this.#apiService.httpTaskId$('3ikEwlP7ZLqk5sIhw3a7').subscribe();
+  }
+
+  public httpTaskCreate(title: string) {
+    return this.#apiService
+      .httpTaskCreate$(title)
+      .pipe(
+        concatMap(() => {
+          return this.#apiService.httpListTask$();
+        })
+      )
+      .subscribe();
   }
 }
