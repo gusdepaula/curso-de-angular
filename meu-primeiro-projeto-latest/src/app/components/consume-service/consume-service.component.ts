@@ -22,7 +22,10 @@ export class ConsumeServiceComponent implements OnInit {
 
   public getListTask = this.#apiService.getTaskList;
 
+  public getTaskId = this.#apiService.getTaskId;
+
   ngOnInit(): void {
     this.#apiService.httpListTask$().subscribe();
+    this.#apiService.httpTaskId$('3ikEwlP7ZLqk5sIhw3a7').subscribe();
   }
 }

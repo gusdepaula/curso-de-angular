@@ -34,4 +34,17 @@ export class ApiService {
       })
     );
   }
+
+  #setTaskId = signal<ITask | null>(null);
+  get getTaskId() {
+    return this.#setTaskId.asReadonly();
+  }
+  public httpTaskId$(id: string): Observable<ITask> {
+    return this.#http.get<ITask>(`${this.#url()}/${id}`).pipe(
+      shareReplay(),
+      tap((res) => {
+        this.#setTaskId.set(res);
+      })
+    );
+  }
 }
