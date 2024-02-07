@@ -27,6 +27,7 @@ export class ApiService {
   }
 
   public httpTaskList$(): Observable<ITask[]> {
+    this.#setTaskList.set(null);
     return this.#http.get<ITask[]>(this.#url()).pipe(
       shareReplay(),
       tap((res) => {
@@ -40,6 +41,7 @@ export class ApiService {
     return this.#setTaskId.asReadonly();
   }
   public httpTaskId$(id: string): Observable<ITask> {
+    this.#setTaskId.set(null);
     return this.#http.get<ITask>(`${this.#url()}/${id}`).pipe(
       shareReplay(),
       tap((res) => {
