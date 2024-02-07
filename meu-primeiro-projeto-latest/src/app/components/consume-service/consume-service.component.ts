@@ -25,6 +25,12 @@ export class ConsumeServiceComponent implements OnInit {
   public getListTask = this.#apiService.getTaskList;
 
   public getTaskId = this.#apiService.getTaskId;
+  public getTaskIdError = this.#apiService.getTaskIdError;
+
+  public getTaskCreateError = this.#apiService.getTaskCreateError;
+  public getTaskListError = this.#apiService.getTaskListError;
+  public getTaskUpdateError = this.#apiService.getTaskUpdateError;
+  public getTaskDeleteError = this.#apiService.getTaskDeleteError;
 
   ngOnInit(): void {
     this.#apiService.httpTaskList$().subscribe();

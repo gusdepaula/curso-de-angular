@@ -1,7 +1,14 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, inject, signal } from '@angular/core';
 import { environment } from 'environments/environment';
-import { BehaviorSubject, Observable, shareReplay, tap } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  catchError,
+  shareReplay,
+  tap,
+  throwError,
+} from 'rxjs';
 
 interface ITask {
   id: string;
@@ -26,12 +33,22 @@ export class ApiService {
     return this.#setTaskList.asReadonly();
   }
 
+  #setTaskListError = signal<ITask[] | null>(null);
+  get getTaskListError() {
+    return this.#setTaskListError.asReadonly();
+  }
+
   public httpTaskList$(): Observable<ITask[]> {
+    this.#setTaskListError.set(null);
     this.#setTaskList.set(null);
     return this.#http.get<ITask[]>(this.#url()).pipe(
       shareReplay(),
       tap((res) => {
         this.#setTaskList.set(res);
+      }),
+      catchError((error: HttpErrorResponse) => {
+        this.#setTaskListError.set(error.error.message);
+        return throwError(() => error);
       })
     );
   }
@@ -40,29 +57,68 @@ export class ApiService {
   get getTaskId() {
     return this.#setTaskId.asReadonly();
   }
+  #setTaskIdError = signal<ITask | null>(null);
+  get getTaskIdError() {
+    return this.#setTaskIdError.asReadonly();
+  }
   public httpTaskId$(id: string): Observable<ITask> {
     this.#setTaskId.set(null);
+    this.#setTaskIdError.set(null);
+
     return this.#http.get<ITask>(`${this.#url()}/${id}`).pipe(
       shareReplay(),
       tap((res) => {
         this.#setTaskId.set(res);
+      }),
+      catchError((error: HttpErrorResponse) => {
+        this.#setTaskIdError.set(error.error.message);
+        return throwError(() => error);
       })
     );
   }
 
+  #setTaskCreateError = signal<ITask | null>(null);
+  get getTaskCreateError() {
+    return this.#setTaskCreateError.asReadonly();
+  }
   public httpTaskCreate$(title: string): Observable<ITask> {
-    return this.#http.post<ITask>(this.#url(), { title }).pipe(shareReplay());
+    this.#setTaskCreateError.set(null);
+    return this.#http.post<ITask>(this.#url(), { title }).pipe(
+      shareReplay(),
+      catchError((error: HttpErrorResponse) => {
+        this.#setTaskCreateError.set(error.error.message);
+        return throwError(() => error);
+      })
+    );
   }
 
+  #setTaskUpdateError = signal<ITask | null>(null);
+  get getTaskUpdateError() {
+    return this.#setTaskUpdateError.asReadonly();
+  }
   public httpTaskUpdate$(id: string, title: string): Observable<ITask> {
-    return this.#http
-      .patch<ITask>(`${this.#url()}/${id}`, { title })
-      .pipe(shareReplay());
+    this.#setTaskUpdateError.set(null);
+    return this.#http.patch<ITask>(`${this.#url()}/${id}`, { title }).pipe(
+      shareReplay(),
+      catchError((error: HttpErrorResponse) => {
+        this.#setTaskUpdateError.set(error.error.message);
+        return throwError(() => error);
+      })
+    );
   }
 
+  #setTaskDeleteError = signal<ITask | null>(null);
+  get getTaskDeleteError() {
+    return this.#setTaskDeleteError.asReadonly();
+  }
   public httpTaskDelete$(id: string): Observable<void> {
-    return this.#http
-      .delete<void>(`${this.#url()}/${id}`, {})
-      .pipe(shareReplay());
+    this.#setTaskDeleteError.set(null);
+    return this.#http.delete<void>(`${this.#url()}/${id}`, {}).pipe(
+      shareReplay(),
+      catchError((error: HttpErrorResponse) => {
+        this.#setTaskDeleteError.set(error.error.message);
+        return throwError(() => error);
+      })
+    );
   }
 }

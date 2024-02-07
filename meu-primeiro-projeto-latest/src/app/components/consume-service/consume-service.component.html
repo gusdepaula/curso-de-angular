@@ -14,16 +14,24 @@
 </ul>
 } @else {
 <li>Loading...</li>
+
+} @if(getTaskListError()) {
+<p>{{ getTaskListError() }}</p>
+} @if(getTaskDeleteError()) {
+<p>{{ getTaskDeleteError() }}</p>
 }
 
 <h3>Get item Id</h3>
 @if(getTaskId(); as data){
 <p>Get por ID: {{ data.id }} - {{ data.title }}</p>
-}
+} @else { {{ getTaskIdError() }} }
 
 <h3>Post create</h3>
 <input type="text" #createTitle placeholder="Add title" />
 <button (click)="httpTaskCreate(createTitle.value)">Create</button>
+@if(getTaskCreateError()) {
+<p>{{ getTaskCreateError() }}</p>
+}
 
 <h3>Patch update</h3>
 <input type="text" #updateId placeholder="Add id" />
@@ -31,3 +39,6 @@
 <button (click)="httpTaskUpdate(updateId.value, updateTitle.value)">
   Create
 </button>
+@if(getTaskUpdateError()) {
+{{ getTaskUpdateError() }}
+}
