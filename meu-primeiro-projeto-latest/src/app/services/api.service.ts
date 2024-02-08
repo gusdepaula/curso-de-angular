@@ -44,12 +44,10 @@ export class ApiService {
   }
 
   public httpTaskList$(): Observable<ITask[]> {
-    const headers = new HttpHeaders().set('x-vida-full-stack', 'dev');
     const params = new HttpParams().set('page', '1').set('previous_page', '1');
     this.#setTaskListError.set(null);
     this.#setTaskList.set(null);
-    return this.#http.get<ITask[]>(this.#url(), { headers, params }).pipe(
-      shareReplay(),
+    return this.#http.get<ITask[]>(this.#url(), { params }).pipe(
       tap((res) => {
         this.#setTaskList.set(res);
       }),
@@ -73,7 +71,6 @@ export class ApiService {
     this.#setTaskIdError.set(null);
 
     return this.#http.get<ITask>(`${this.#url()}/${id}`).pipe(
-      shareReplay(),
       tap((res) => {
         this.#setTaskId.set(res);
       }),
@@ -91,7 +88,6 @@ export class ApiService {
   public httpTaskCreate$(title: string): Observable<ITask> {
     this.#setTaskCreateError.set(null);
     return this.#http.post<ITask>(this.#url(), { title }).pipe(
-      shareReplay(),
       catchError((error: HttpErrorResponse) => {
         this.#setTaskCreateError.set(error.error.message);
         return throwError(() => error);
@@ -106,7 +102,6 @@ export class ApiService {
   public httpTaskUpdate$(id: string, title: string): Observable<ITask> {
     this.#setTaskUpdateError.set(null);
     return this.#http.patch<ITask>(`${this.#url()}/${id}`, { title }).pipe(
-      shareReplay(),
       catchError((error: HttpErrorResponse) => {
         this.#setTaskUpdateError.set(error.error.message);
         return throwError(() => error);
@@ -121,7 +116,6 @@ export class ApiService {
   public httpTaskDelete$(id: string): Observable<void> {
     this.#setTaskDeleteError.set(null);
     return this.#http.delete<void>(`${this.#url()}/${id}`, {}).pipe(
-      shareReplay(),
       catchError((error: HttpErrorResponse) => {
         this.#setTaskDeleteError.set(error.error.message);
         return throwError(() => error);
