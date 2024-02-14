@@ -15,7 +15,7 @@ export const routes: Routes = [
     component: SobreComponent,
   },
   {
-    path: 'servicos-prestados',
+    path: 'servicos/:id',
     title: 'Serviços da página',
     component: ServicosPrestadosComponent,
   },
