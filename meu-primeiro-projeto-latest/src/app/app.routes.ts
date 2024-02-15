@@ -1,8 +1,4 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import { SobreComponent } from './pages/sobre/sobre.component';
-import { ServicosPrestadosComponent } from './pages/servicos-prestados/servicos-prestados.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 export const routes: Routes = [
   {
@@ -11,19 +7,24 @@ export const routes: Routes = [
       {
         path: '',
         title: 'Home da página',
-        component: HomeComponent,
+        loadComponent: () => import('./pages/home/home.component'),
       },
       {
         path: 'sobre',
         title: 'Sobre da página',
-        component: SobreComponent,
+        loadComponent: () => import('./pages/sobre/sobre.component'),
       },
       {
         path: 'servicos/:id',
         title: 'Serviços da página',
-        component: ServicosPrestadosComponent,
+        loadComponent: () =>
+          import('./pages/servicos-prestados/servicos-prestados.component'),
       },
     ],
   },
-  { path: '**', title: '', component: NotFoundComponent },
+  {
+    path: '**',
+    title: '',
+    loadComponent: () => import('./pages/not-found/not-found.component'),
+  },
 ];
