@@ -6,7 +6,7 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-servicos-prestados',
@@ -18,6 +18,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export default class ServicosPrestadosComponent implements OnInit {
   #route = inject(ActivatedRoute);
+  #router = inject(Router);
 
   public getId = signal<null | string>(null);
   @Input() set id(id: string) {
@@ -37,5 +38,7 @@ export default class ServicosPrestadosComponent implements OnInit {
         console.log(next.get('age'));
       },
     });
+
+    setTimeout(() => this.#router.navigate(['/curso']), 3000);
   }
 }
