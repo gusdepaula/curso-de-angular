@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,12 +7,18 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-servicos-prestados',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './servicos-prestados.component.html',
   styleUrl: './servicos-prestados.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -25,12 +32,16 @@ export default class ServicosPrestadosComponent implements OnInit {
     this.getId.set(id);
   }
 
+  public form = new FormGroup({
+    name: new FormControl(null, [Validators.required]),
+  });
+
   ngOnInit(): void {
     console.log(this.#route.snapshot.params['id']);
     this.#route.params.subscribe((res) => console.log(res['id']));
 
-    console.log(this.#route.snapshot.queryParams['name']);
-    console.log(this.#route.snapshot.queryParams['age']);
+    console.log(this.#route.snapshot.queryParamMap.get('name'));
+    console.log(this.#route.snapshot.queryParamMap.get('age'));
 
     this.#route.queryParamMap.subscribe({
       next: (next) => {
@@ -39,6 +50,6 @@ export default class ServicosPrestadosComponent implements OnInit {
       },
     });
 
-    setTimeout(() => this.#router.navigate(['/curso']), 3000);
+    // setTimeout(() => this.#router.navigate(['/curso']), 3000);
   }
 }
