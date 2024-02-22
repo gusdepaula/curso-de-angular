@@ -1,9 +1,18 @@
-<h2 style="margin-bottom: 5000px">Otimização de imagens</h2>
+<h2>Otimização de imagem</h2>
 <img
   ngSrc="assets/capa.jpg"
   width="400"
   height="250"
-  alt="Uma imagem"
+  alt="Uma Imagem"
   priority
-  loading="lazy"
 />
+
+<div style="position: relative; width: 250px; height: 400px; background: blue">
+  <img
+    ngSrc="assets/capa.jpg"
+    alt="Uma Imagem"
+    fill
+    priority
+    style="object-fit: cover"
+  />
+</div>
