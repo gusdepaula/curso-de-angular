@@ -1,6 +1,7 @@
 <h2>Otimização de imagem</h2>
 <img
-  ngSrc="assets/capa.jpg"
+  ngSrc="capa.jpg"
+  ngSrcset="100w, 200w, 300w"
   width="400"
   height="250"
   alt="Uma Imagem"
@@ -9,10 +10,11 @@
 
 <div style="position: relative; width: 250px; height: 400px; background: blue">
   <img
-    ngSrc="assets/capa.jpg"
+    ngSrc="capa.jpg"
     alt="Uma Imagem"
     fill
     priority
     style="object-fit: cover"
+    ngSrcset="100w, 200w, 300w"
   />
 </div>
