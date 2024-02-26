@@ -1,4 +1,5 @@
 import { ApplicationConfig, LOCALE_ID } from '@angular/core';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {
   provideRouter,
   withComponentInputBinding,
@@ -46,6 +47,7 @@ export const appConfig: ApplicationConfig = {
     //     }.${type}`;
     //   },
     // },
+    provideAnimationsAsync(),
     { provide: LOCALE_ID, useValue: 'pt-BR' },
   ],
 };
