@@ -1,5 +1,6 @@
 import {
   animate,
+  keyframes,
   state,
   style,
   transition,
@@ -32,8 +33,44 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
         })
       ),
       transition('move-left <=> move-right', animate('1s')),
-      transition(':enter', animate('1s')),
-      transition(':leave', animate('2s')),
+      transition(':enter', [
+        animate(
+          '2s',
+          keyframes([
+            style({
+              opacity: 0,
+              transform: 'scale(1) translateX(0px) rotate(0deg)',
+            }),
+            style({
+              opacity: 0.5,
+              transform: 'scale(0.9) translateX(250px) rotate(180deg)',
+            }),
+            style({
+              opacity: 1,
+              transform: 'scale(0.7) translateX(500px) rotate(360deg)',
+            }),
+          ])
+        ),
+      ]),
+      transition(':leave', [
+        animate(
+          '2s',
+          keyframes([
+            style({
+              opacity: 1,
+              transform: 'scale(0.7) translateX(500px) rotate(360deg)',
+            }),
+            style({
+              opacity: 0.5,
+              transform: 'scale(0.9) translateX(250px) rotate(180deg)',
+            }),
+            style({
+              opacity: 0,
+              transform: 'scale(1) translateX(0px) rotate(0deg)',
+            }),
+          ])
+        ),
+      ]),
       transition('* => move-right', animate('5s 1s ease-in-out')),
       transition('* => move-left', animate('1s')),
     ]),
