@@ -129,9 +129,38 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
           ]),
         ]),
       ]),
+      transition('* => *', [
+        query(':leave', [
+          style({
+            background: 'red',
+          }),
+          animate('1s', style({ opacity: 0 })),
+        ]),
+      ]),
     ]),
   ],
 })
 export class AnimationsComponent {
   public moveIn = signal('');
+  public listItens = signal([
+    {
+      name: 'Item 1',
+    },
+    {
+      name: 'Item 2',
+    },
+    {
+      name: 'Item 3',
+    },
+    {
+      name: 'Item 4',
+    },
+    {
+      name: 'Item 5',
+    },
+  ]);
+
+  public deleteItem(index: number) {
+    return this.listItens().splice(index, 1);
+  }
 }
