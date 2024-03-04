@@ -1,10 +1,6 @@
 import {
   animate,
-  group,
   keyframes,
-  query,
-  sequence,
-  stagger,
   state,
   style,
   transition,
@@ -26,18 +22,16 @@ import { listItensAnimation } from 'app/animations/list-itens.animation';
       state(
         'move-left',
         style({
-          opacity: 0,
           transform: 'scale(1) translateX(0) rotate(0deg)',
         })
       ),
       state(
         'move-right',
         style({
-          opacity: 1,
           transform: 'scale(0.7) translateX(500px) rotate(360deg)',
         })
       ),
-      transition('move-left <=> move-right', animate('1s')),
+      transition('move-left <=> move-right', animate('1s ease-in-out')),
       transition(':enter', [
         animate(
           '2s',
@@ -104,5 +98,12 @@ export class AnimationsComponent {
 
   public deleteItem(index: number) {
     return this.listItens().splice(index, 1);
+  }
+
+  public addNewItem() {
+    return this.listItens.update((oldValue) => [
+      ...oldValue,
+      { name: 'Novo Nome' },
+    ]);
   }
 }
