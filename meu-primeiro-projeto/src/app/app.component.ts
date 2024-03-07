@@ -1,17 +1,8 @@
-import {
-  AfterContentChecked,
-  AfterContentInit,
-  AfterViewChecked,
-  AfterViewInit,
-  Component,
-  DoCheck,
-  OnInit,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: `<app-diretivas-atributos></app-diretivas-atributos
-    ><router-outlet></router-outlet>`,
+  template: `<app-new-component></app-new-component>`,
 })
 export class AppComponent implements OnInit {
   ngOnInit(): void {}
