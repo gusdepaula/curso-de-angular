@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: `<app-input [contator]="addValue"></app-input>
-    <button (click)="add()">Add</button>`,
+  template: `<app-output></app-output>`,
 })
 export class AppComponent implements OnInit {
   ngOnInit(): void {}
