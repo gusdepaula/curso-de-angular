@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { FoodList } from 'src/app/module/food-list';
+
+//Services
 import { FoodListService } from 'src/app/services/food-list.service';
 
 @Component({
@@ -19,8 +22,28 @@ export class FoodListComponent implements OnInit {
     );
 
     this.foodListService.emitEvent.subscribe((res) => {
-      alert(`Olha você adicionou => ${res.nome}`);
+      alert(`Olha você add => ${res.nome}`);
       return this.foodList.push(res);
     });
+  }
+
+  public foodListEdit(value: string, id: number) {
+    this.foodListService.foodListEdit(value, id).subscribe(
+      (res) => {
+        return console.log(res);
+      },
+      (error) => error
+    );
+  }
+
+  public foodListDelete(id: number) {
+    return this.foodListService.foodListDelete(id).subscribe(
+      (res) => {
+        this.foodList = this.foodList.filter((item) => {
+          return id !== item.id;
+        });
+      },
+      (error) => error
+    );
   }
 }
