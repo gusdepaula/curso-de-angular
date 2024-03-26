@@ -2,6 +2,15 @@
   <label for="nome">Nome:</label>
   <input type="text" name="nome" ngModel />
   <br /><br />
+  <label for="masculino">Masculino:</label>
+  <input type="radio" name="sexo" value="masculino" ngModel />
+  <br /><br />
+  <label for="feminino">Feminino:</label>
+  <input type="radio" name="sexo" value="feminino" ngModel />
+  <br /><br />
+  <label for="outros">Outros:</label>
+  <input type="radio" name="sexo" value="outros" ngModel />
+  <br /><br />
 </form>
 
 {{ form.value | json }}
