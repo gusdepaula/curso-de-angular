@@ -20,6 +20,14 @@
   <label for="react">React:</label>
   <input type="checkbox" name="react" ngModel />
   <br /><br />
+  <select name="comidas" ngModel>
+    <option value="">Selecione um alimento</option>
+    <option *ngFor="let item of listComida" [ngValue]="item">
+      {{ item.comida }}
+    </option>
+  </select>
+
+  <br /><br />
 </form>
 
 {{ form.value | json }}
