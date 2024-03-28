@@ -1,6 +1,29 @@
 <form #form="ngForm">
-  <label for="nome">Nome:</label>
-  <input type="text" name="nome" ngModel />
+  <label>
+    Nome:
+    <input
+      type="text"
+      name="nome"
+      #nome="ngModel"
+      [ngModel]="nome.value"
+      required
+    />
+    <span *ngIf="!nome.valid && nome.dirty && nome.touched"> Invalid </span>
+  </label>
+
+  <br />
+  <br />
+
+  {{ nome.valid }}
+  {{ nome.dirty }}
+  {{ nome.touched }}
+
+  <!-- {{ form.valid }} -->
+  <!--
+    valid
+    dirty
+    touched
+  -->
   <br /><br />
   <label for="masculino">Masculino:</label>
   <input type="radio" name="sexo" value="masculino" ngModel />
