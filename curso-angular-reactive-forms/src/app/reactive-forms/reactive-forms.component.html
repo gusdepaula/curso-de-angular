@@ -23,5 +23,5 @@
     {{ cadastroForm.get("firstName")?.dirty | json }}
     {{ cadastroForm.get("firstName")?.touched | json }}
   </p>
-  <button>Enviar</button>
+  <button [disabled]="cadastroForm.invalid">Enviar</button>
 </form>
