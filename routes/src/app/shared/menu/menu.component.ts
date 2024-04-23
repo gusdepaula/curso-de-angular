@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -10,12 +10,17 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
   styleUrl: './menu.component.scss',
 })
 export class MenuComponent implements OnInit {
-  constructor(private activedRoute: ActivatedRoute) {}
+  constructor(private activedRoute: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     // this.activedRoute.params.subscribe((res) =>
     //   // console.log(res.id, res.username, res)
     // );
     this.activedRoute.queryParams.subscribe((res) => console.log(res));
+
+    setInterval(() => {
+      // this.router.navigate(['404']);
+      this.router.navigateByUrl('404');
+    }, 5000);
   }
 }
