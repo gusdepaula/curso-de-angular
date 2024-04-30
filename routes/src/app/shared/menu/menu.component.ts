@@ -20,7 +20,7 @@ export class MenuComponent implements OnInit {
 
     setInterval(() => {
       // this.router.navigate(['404']);
-      this.router.navigateByUrl('404');
+      // this.router.navigateByUrl('404');
     }, 5000);
   }
 }
