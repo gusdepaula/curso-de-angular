@@ -10,7 +10,11 @@ export const routes: Routes = [
     component: SobreComponent,
     children: [{ path: ':id/:username', component: SobreComponent }],
   },
-
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+  },
   { path: '404', component: PageErrorComponent },
   { path: '**', redirectTo: '404' },
 ];
