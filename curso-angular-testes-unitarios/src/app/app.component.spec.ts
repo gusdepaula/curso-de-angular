@@ -24,8 +24,14 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain(
+    expect(compiled.querySelector('h1')?.textContent).toContain(
       'curso-angular-testes-unitarios'
     );
+  });
+
+  it(`Testando função' title de soma()`, () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app.soma(1, 1)).toEqual(2);
   });
 });
