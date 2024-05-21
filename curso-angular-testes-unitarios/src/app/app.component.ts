@@ -1,18 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { BankingComponent } from './shared/banking/banking.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  imports: [CommonModule, RouterOutlet, BankingComponent],
+  template: `<app-banking />`,
 })
-export class AppComponent {
-  title = 'curso-angular-testes-unitarios';
-
-  public soma(value1: number, value2: number) {
-    return value1 + value2;
-  }
-}
+export class AppComponent {}
