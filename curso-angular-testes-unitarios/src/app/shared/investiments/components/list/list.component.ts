@@ -1,19 +1,25 @@
-import { Component } from '@angular/core';
-import { Investiments } from '../../model/investiments';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { ListInvestimentsService } from '../../services/list-investiments.service';
+import { Investiments } from '../../model/investiments';
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HttpClientModule],
   templateUrl: './list.component.html',
-  styleUrl: './list.component.scss',
+  styleUrls: ['./list.component.scss'],
 })
-export class ListComponent {
-  public investiments: Array<Investiments> = [
-    { name: 'itaú', value: 100 },
-    { name: 'bb', value: 100 },
-    { name: 'nubank', value: 100 },
-    { name: 'inter', value: 100 },
-  ];
+export class ListComponent implements OnInit {
+  public investiments!: Array<Investiments>;
+
+  constructor(private listInvestimentsService: ListInvestimentsService) {}
+
+  ngOnInit(): void {
+    this.listInvestimentsService.list().subscribe((res) => {
+      console.log(res);
+      this.investiments = res;
+    });
+  }
 }
