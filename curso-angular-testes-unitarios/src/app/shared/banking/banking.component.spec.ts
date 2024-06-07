@@ -10,8 +10,7 @@ describe('BankingComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [BankingComponent, ListComponent],
-      imports: [HttpClientTestingModule],
+      imports: [BankingComponent, ListComponent, HttpClientTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BankingComponent);
