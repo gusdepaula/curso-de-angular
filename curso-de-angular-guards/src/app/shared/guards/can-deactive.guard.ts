@@ -24,6 +24,9 @@ export class CanDeactiveGuard implements CanDeactivate<AccountComponent> {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
+    console.log(currentRoute);
+    console.log(currentState);
+    console.log(nextState);
     return component.exit();
   }
 }
