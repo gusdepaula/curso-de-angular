@@ -8,7 +8,7 @@ import {
 import { Observable } from 'rxjs';
 
 // Components
-import { AccountComponent } from '../account/account.component';
+import { AccountComponent } from '../pages/account/account.component';
 
 @Injectable({
   providedIn: 'root',
