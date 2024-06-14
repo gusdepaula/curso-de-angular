@@ -6,6 +6,7 @@ import { CanDeactiveGuard } from './shared/guards/can-deactive.guard';
 import { core } from '@angular/compiler';
 import { CoreModule } from './core/core.module';
 import { CanLoadGuard } from './shared/guards/can-load.guard';
+import { CanActivateChildGuard } from './shared/guards/can-activate-child.guard';
 
 export const routes: Routes = [
   {
@@ -20,7 +21,8 @@ export const routes: Routes = [
   },
   {
     path: 'core',
-    loadChildren: () => import('./core/core.module').then((m) => CoreModule),
+    loadChildren: () => import('./core/core.module').then((m) => m.CoreModule),
     canLoad: [CanLoadGuard],
+    canActivateChild: [CanActivateChildGuard],
   },
 ];
